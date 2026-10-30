@@ -26,23 +26,13 @@ El menú **Jerarquía y permisos** presenta los niveles organizativos Administra
 Requisitos: Docker con motor activo y Compose.
 
 1. Copia `.env.example` a `.env`.
-2. Define `POSTGRES_PASSWORD` con un valor aleatorio y `DEMO_PASSWORD` con otro de al menos 12 caracteres. No los publiques en Git.
+2. Configura `POSTGRES_PASSWORD` y los datos del administrador en `INITIAL_ADMIN_NAME`, `INITIAL_ADMIN_EMAIL` e `INITIAL_ADMIN_PASSWORD`.
 3. Ejecuta `docker compose up --build -d` desde esta carpeta.
 4. Abre <http://localhost:8080>.
 
-La primera inicialización de una base vacía crea datos de prueba y estas cuentas si `DEMO_PASSWORD` está definido:
+El primer arranque aplica las migraciones y permite crear un único administrador con los datos configurados por entorno. La contraseña requiere un mínimo de 12 caracteres y un máximo de 72 bytes. Si no se configuran esas variables, no se crean usuarios. Si ya existen cuentas, la inicialización no las modifica ni restablece sus contraseñas.
 
-| Cuenta | Rol |
-| --- | --- |
-| `admin@aula.test` | Administrador |
-| `maestro@aula.test` | Maestro |
-| `alumno@aula.test` | Alumno |
-| `coordinador@aula.test` | Coordinador del grupo A |
-| `otro.alumno@aula.test` | Alumno del grupo B, utilizado para verificar aislamiento |
-| `otro.maestro@aula.test` | Maestro del grupo B |
-| `companera@aula.test` | Otra alumna del grupo A |
-
-Todas usan exclusivamente la contraseña suministrada por variable de entorno. La semilla no modifica una base con usuarios existentes. En una instalación real, cambia las contraseñas y desactiva las cuentas de prueba antes de incorporar alumnos; después retira `DEMO_PASSWORD`. Sin esa variable y sin usuarios existentes no se crean cuentas implícitas.
+La instalación no carga alumnos, maestros, grupos, materias ni actividades de ejemplo. Los datos ficticios pertenecen a las pruebas y no se incluyen en el JAR de producción. Las variables `INITIAL_ADMIN_*` se pueden retirar después de crear la cuenta.
 
 ## Desarrollo local
 
@@ -54,7 +44,9 @@ Configura por entorno:
 $env:DATABASE_URL = 'jdbc:postgresql://127.0.0.1:5432/aula'
 $env:DATABASE_USER = 'aula'
 $env:DATABASE_PASSWORD = '<tu contraseña local>'
-$env:DEMO_PASSWORD = '<contraseña inicial aleatoria>'
+$env:INITIAL_ADMIN_NAME = '<nombre del administrador>'
+$env:INITIAL_ADMIN_EMAIL = '<correo institucional>'
+$env:INITIAL_ADMIN_PASSWORD = '<contraseña inicial>'
 ```
 
 La base y su usuario deben existir. Flyway aplica las migraciones al arrancar; el usuario de la aplicación necesita los privilegios de creación del esquema para ese paso.
@@ -105,7 +97,7 @@ $env:TEST_DATABASE_PASSWORD = '<contraseña de la base de pruebas>'
 mvn -f backend/pom.xml test
 ```
 
-Para los recorridos de navegador, inicia la aplicación con datos de prueba y una contraseña conocida:
+Los recorridos de navegador utilizan una instancia aislada con datos de prueba. La semilla de `backend/src/test/` requiere el perfil `demo` y el classpath de pruebas; no está disponible en la imagen de producción:
 
 ```powershell
 cd frontend
@@ -133,7 +125,7 @@ Consulta `VERIFICATION.md` para resultados efectivamente ejecutados, capturas y 
 
 Spring JDBC se eligió en lugar de JPA para mantener explícitas las consultas de alcance y las transacciones en esta primera versión. Las capas de presentación y persistencia están separadas, aunque varios controladores aún agrupan la orquestación de negocio; una ampliación grande debe extraer esos casos de uso a servicios por módulo.
 
-Los instantes de publicación, entrega y mensajes se guardan en UTC y se presentan en la zona horaria del navegador. Los horarios semanales son horas locales de la institución; coordina esa zona con los usuarios. `APP_TIMEZONE` configura la zona de la institución utilizada por los datos iniciales. No hay gestión multiinstitución ni conversión automática del horario recurrente entre zonas.
+Los instantes de publicación, entrega y mensajes se guardan en UTC y se presentan en la zona horaria del navegador. Los horarios semanales son horas locales de la institución; coordina esa zona con los usuarios. `APP_TIMEZONE` configura la zona de la institución. No hay gestión multiinstitución ni conversión automática del horario recurrente entre zonas.
 
 ## API principal
 

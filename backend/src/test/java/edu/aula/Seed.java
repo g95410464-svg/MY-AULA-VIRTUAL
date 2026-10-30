@@ -5,12 +5,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Profile("demo")
 public class Seed implements CommandLineRunner {
     final Db db; final PasswordEncoder encoder; final String password; final ZoneId zone;
-    public Seed(Db db,PasswordEncoder e,@Value("${app.demo-password}") String p,@Value("${app.timezone}") String timezone){this.db=db;encoder=e;password=p;zone=ZoneId.of(timezone);}
+    public Seed(Db db,PasswordEncoder e,@Value("${app.demo-password:${DEMO_PASSWORD:}}") String p,@Value("${app.timezone}") String timezone){this.db=db;encoder=e;password=p;zone=ZoneId.of(timezone);}
     @Override @Transactional public void run(String... args){
         if(password.isBlank()||db.exists("SELECT 1 FROM app_user"))return;
         if(password.length()<12||password.length()>72)throw new IllegalArgumentException("DEMO_PASSWORD debe tener entre 12 y 72 caracteres.");

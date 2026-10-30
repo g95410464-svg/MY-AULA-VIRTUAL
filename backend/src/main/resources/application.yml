@@ -21,5 +21,8 @@ spring:
   jackson:
     time-zone: UTC
 app:
-  demo-password: ${DEMO_PASSWORD:}
   timezone: ${APP_TIMEZONE:America/Guatemala}
+  bootstrap-admin:
+    name: ${INITIAL_ADMIN_NAME:}
+    email: ${INITIAL_ADMIN_EMAIL:}
+    password: ${INITIAL_ADMIN_PASSWORD:}
