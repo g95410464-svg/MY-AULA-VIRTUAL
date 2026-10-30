@@ -76,11 +76,12 @@ public class AcademicController {
     @PostMapping("/users") @Transactional Map<String,Long> user(@RequestBody @Valid NewUser p){a.roles("ADMIN");long id=db.insert("INSERT INTO app_user(name,email,role,password_hash,must_change_password) VALUES (?,?,?,?,true)",p.name(),p.email().toLowerCase(Locale.ROOT),p.role(),encoder.encode(p.password()));audit("CREATE_USER",id);return Map.of("id",id);}
     public record EditUser(@NotBlank @Size(max=120) String name,@Email @NotBlank @Size(max=200) String email,@Pattern(regexp="STUDENT|TEACHER|COORDINATOR|ADMIN") @NotNull String role,boolean active){}
     @PutMapping("/users/{id}") @Transactional void editUser(@PathVariable long id,@RequestBody @Valid EditUser p){
-        a.roles("ADMIN");db.list("SELECT id FROM app_user WHERE role='ADMIN' ORDER BY id FOR UPDATE");var u=db.one("SELECT * FROM app_user WHERE id=? FOR UPDATE",id);
-        if(id==a.uid()&&(!p.active()||!p.role().equals("ADMIN")))bad("No puedes retirar tu propio acceso administrativo.");
+        a.roles("ADMIN");long actorId=a.uid();db.list("SELECT id FROM app_user WHERE role='ADMIN' ORDER BY id FOR UPDATE");var u=db.one("SELECT * FROM app_user WHERE id=? FOR UPDATE",id);
+        if(id==actorId&&(!p.active()||!p.role().equals("ADMIN")))bad("No puedes retirar tu propio acceso administrativo.");
         if(!p.role().equals(u.get("role"))&&(db.exists("SELECT 1 FROM enrollment WHERE student_id=?",id)||db.exists("SELECT 1 FROM course WHERE teacher_id=?",id)||db.exists("SELECT 1 FROM coordinator_scope WHERE user_id=?",id)||db.exists("SELECT 1 FROM submission WHERE student_id=?",id)))bad("Retira las asignaciones antes de cambiar el rol; los alumnos con entregas conservan su rol histórico.");
         if(!p.role().equals("ADMIN")&&!p.role().equals("COORDINATOR"))db.update("DELETE FROM user_secondary_role WHERE user_id=?",id);
-        db.update("UPDATE app_user SET name=?,email=?,role=?,active=?,auth_version=auth_version+1 WHERE id=?",p.name(),p.email().toLowerCase(Locale.ROOT),p.role(),p.active(),id);audit("EDIT_USER",id);
+        db.update("UPDATE app_user SET name=?,email=?,role=?,active=?,auth_version=auth_version+1 WHERE id=?",p.name(),p.email().toLowerCase(Locale.ROOT),p.role(),p.active(),id);
+        db.update("INSERT INTO audit_log(actor_id,action,target) VALUES (?,'EDIT_USER',?)",actorId,Long.toString(id));
     }
     public record Reset(@NotNull @Size(min=12,max=72) String password){}
     @PostMapping("/users/{id}/reset") @Transactional void reset(@PathVariable long id,@RequestBody @Valid Reset p){a.roles("ADMIN");db.one("SELECT id FROM app_user WHERE id=?",id);if(id==a.uid())bad("Utiliza el cambio de contraseña de tu cuenta.");db.update("UPDATE app_user SET password_hash=?,must_change_password=true,auth_version=auth_version+1 WHERE id=?",encoder.encode(p.password()),id);audit("RESET_PASSWORD",id);}

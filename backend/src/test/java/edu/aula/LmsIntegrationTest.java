@@ -134,6 +134,15 @@ class LmsIntegrationTest {
         mvc.perform(get("/api/courses").session(student)).andExpect(status().isOk());
         assertThat(login("nuevo",next)).isNotNull();
     }
+    @Test void administratorCanChangeOwnEmailAndKeepAuditActor()throws Exception{
+        var admin=login("admin");
+        mvc.perform(body(put("/api/users/1").session(admin),Map.of("name","Administración","email","direccion@centro.edu","role","ADMIN","active",true))).andExpect(status().isOk());
+        assertThat(db.one("SELECT email FROM app_user WHERE id=1")).containsEntry("email","direccion@centro.edu");
+        assertThat(db.one("SELECT actor_id FROM audit_log WHERE action='EDIT_USER' AND target='1' ORDER BY id DESC LIMIT 1").get("actor_id")).isEqualTo(1L);
+        mvc.perform(get("/api/auth/me").session(admin)).andExpect(status().isUnauthorized());
+        var updated=(MockHttpSession)mvc.perform(post("/api/auth/login").with(csrf()).param("email","direccion@centro.edu").param("password",PASSWORD)).andExpect(status().isNoContent()).andReturn().getRequest().getSession(false);
+        mvc.perform(get("/api/auth/me").session(updated)).andExpect(status().isOk()).andExpect(jsonPath("$.id").value(1)).andExpect(jsonPath("$.role").value("ADMIN"));
+    }
     @Test void passwordResetInvalidatesOldSession()throws Exception{
         var student=login("alumno");mvc.perform(body(post("/api/users/3/reset").session(login("admin")),Map.of("password",PASSWORD+"reset"))).andExpect(status().isOk());
         mvc.perform(get("/api/auth/me").session(student)).andExpect(status().isUnauthorized());
