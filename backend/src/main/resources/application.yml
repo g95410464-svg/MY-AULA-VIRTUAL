@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        same-site: strict
+        secure: ${COOKIE_SECURE:false}
+  error:
+    include-message: never
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/aula}
+    username: ${DATABASE_USER:aula}
+    password: ${DATABASE_PASSWORD:}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  jackson:
+    time-zone: UTC
+app:
+  demo-password: ${DEMO_PASSWORD:}
+  timezone: ${APP_TIMEZONE:America/Guatemala}

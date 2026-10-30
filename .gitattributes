@@ -1,0 +1,9 @@
+# Preserve generated binary artifacts when cloning or exporting on Windows.
+*.pdf binary
+*.png binary
+*.jar binary
+*.zip binary
+*.puml text eol=lf
+*.svg text eol=lf
+*.ttf binary
+*.drawio text eol=lf

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="342" height="180" viewBox="0 0 342 180" role="img" aria-labelledby="title description">
+  <title id="title">Colegio Horizonte · Aula Virtual</title>
+  <desc id="description">Emblema de colegio ficticio con un libro abierto, una pantalla y el nombre Aula Virtual.</desc>
+  <path fill="#142e3c" d="M0 0h342v180H0z"/>
+  <g fill="none" stroke="#b7d1d0" stroke-opacity=".1"><circle cx="342" cy="0" r="93"/><circle cx="342" cy="0" r="119"/><path d="M0 150h342M310 0v180"/></g>
+  <g transform="translate(76 87) scale(.38)">
+    <circle r="169" fill="#1a3949"/>
+    <path d="M0-147 131-99v107c0 82-88 134-131 157C-43 142-131 90-131 8V-99Z" fill="#142e3c" stroke="#d5b981" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-81" y="-55" width="162" height="114" rx="10" stroke="#e5eeeb" stroke-width="4"/>
+      <path d="M-49 79H49M0 59v20" stroke="#e5eeeb" stroke-width="4"/>
+      <path d="M0-10c-18-13-39-14-57-8v51c20-5 38-2 57 11 19-13 37-16 57-11v-51c-18-6-39-5-57 8Z" fill="#234757" stroke="#d5b981" stroke-width="4"/>
+      <path d="M0-10v54M-43-2c11-1 20 1 29 6M43-2c-11-1-20 1-29 6M-19-88a27 27 0 0 1 38 0M-11-79a16 16 0 0 1 22 0" stroke="#d5b981" stroke-width="3"/>
+    </g>
+    <circle cx="0" cy="-70" r="3" fill="#a9c6c1"/>
+    <path d="m-8 112 8-8 8 8-8 8Z" fill="#d5b981"/>
+  </g>
+  <text x="139" y="57" fill="#beced2" font-family="Arial, sans-serif" font-size="9" letter-spacing="3">COLEGIO</text>
+  <text x="136" y="94" fill="#fffaf0" font-family="Georgia, 'Times New Roman', serif" font-size="34">Horizonte</text>
+  <path d="M138 110h65" stroke="#d5b981" stroke-opacity=".65"/>
+  <text x="139" y="132" fill="#d5b981" font-family="Arial, sans-serif" font-size="10" letter-spacing="2">AULA VIRTUAL</text>
+  <text x="139" y="151" fill="#9eb8c2" font-family="Arial, sans-serif" font-size="8.5">Tu colegio, en un solo espacio.</text>
+</svg>

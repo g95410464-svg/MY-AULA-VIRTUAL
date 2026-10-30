@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="816" height="1076" viewBox="0 0 816 1076" role="img" aria-labelledby="title description">
+  <title id="title">Colegio Horizonte · Aula Virtual</title>
+  <desc id="description">Emblema ficticio de un colegio: un escudo con un libro abierto dentro de una pantalla y conexiones digitales.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#c1d8dc" stroke-opacity=".055"/></pattern>
+  </defs>
+  <path fill="#142e3c" d="M0 0h816v1076H0z"/>
+  <path fill="url(#grid)" d="M0 0h816v1076H0z"/>
+  <g fill="none" stroke="#abc9c8" stroke-opacity=".12">
+    <circle cx="816" cy="0" r="280"/><circle cx="816" cy="0" r="348"/>
+    <circle cx="0" cy="1076" r="260"/><circle cx="0" cy="1076" r="326"/>
+  </g>
+  <g fill="#d5b981"><circle cx="678" cy="173" r="4"/><circle cx="144" cy="876" r="4"/></g>
+  <path d="M646 173h28M144 842v27" stroke="#d5b981" stroke-opacity=".45"/>
+  <text x="408" y="122" text-anchor="middle" fill="#9fb7c1" font-family="Arial, sans-serif" font-size="12" letter-spacing="3.8">COMUNIDAD EDUCATIVA</text>
+
+  <g transform="translate(408 367)">
+    <circle r="192" fill="#1a3949"/>
+    <circle r="191.5" fill="none" stroke="#b4cdcf" stroke-opacity=".15"/>
+    <path d="M0-147 131-99v107c0 82-88 134-131 157C-43 142-131 90-131 8V-99Z" fill="#142e3c" stroke="#d5b981" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M0-131 115-89V7c0 71-76 119-115 141C-39 126-115 78-115 7V-89Z" fill="none" stroke="#d5b981" stroke-opacity=".24" stroke-linejoin="round"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-81" y="-55" width="162" height="114" rx="10" stroke="#e5eeeb" stroke-width="3"/>
+      <path d="M-49 79H49M0 59v20" stroke="#e5eeeb" stroke-width="3"/>
+      <path d="M0-10c-18-13-39-14-57-8v51c20-5 38-2 57 11 19-13 37-16 57-11v-51c-18-6-39-5-57 8Z" fill="#234757" stroke="#d5b981" stroke-width="3"/>
+      <path d="M0-10v54M-43-2c11-1 20 1 29 6M-43 13c11-1 20 1 29 6M43-2c-11-1-20 1-29 6M43 13c-11-1-20 1-29 6" stroke="#d5b981" stroke-width="2"/>
+      <path d="M-19-88a27 27 0 0 1 38 0M-11-79a16 16 0 0 1 22 0" stroke="#a9c6c1" stroke-width="2.5"/>
+    </g>
+    <circle cx="0" cy="-70" r="2.5" fill="#a9c6c1"/>
+    <path d="m-8 112 8-8 8 8-8 8Z" fill="#d5b981"/>
+  </g>
+
+  <text x="408" y="626" text-anchor="middle" fill="#e9efed" font-family="Arial, sans-serif" font-size="20" letter-spacing="7">COLEGIO</text>
+  <text x="408" y="695" text-anchor="middle" fill="#fffaf0" font-family="Georgia, 'Times New Roman', serif" font-size="66">Horizonte</text>
+  <path d="M335 733h146" stroke="#d5b981" stroke-opacity=".6"/>
+  <text x="408" y="782" text-anchor="middle" fill="#d5b981" font-family="Arial, sans-serif" font-size="15" letter-spacing="4.5">AULA VIRTUAL</text>
+  <text x="408" y="833" text-anchor="middle" fill="#b6c9cf" font-family="Arial, sans-serif" font-size="21">Tu colegio, en un solo espacio.</text>
+  <g fill="#91acb6" font-family="Arial, sans-serif" font-size="11" letter-spacing="2.4" text-anchor="middle">
+    <text x="408" y="987">APRENDER · CRECER · CONECTAR</text>
+  </g>
+</svg>

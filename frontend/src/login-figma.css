@@ -1,0 +1,331 @@
+@font-face {
+  font-family: "Roboto Aula";
+  src: url("/assets/figma-login/roboto.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+#root:has(> .figma-login) {
+  min-height: 100dvh;
+  background: #fff;
+}
+.figma-login {
+  color-scheme: light;
+  --fl-primary: #0c1421;
+  --fl-secondary: #313957;
+  --fl-link: #1e4ae9;
+  font-family: "Roboto Aula", "Segoe UI", sans-serif;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 32px;
+  min-height: 100dvh;
+  background: #fff;
+  color: var(--fl-primary);
+}
+.fl-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+  padding: 0;
+  min-height: 900px;
+}
+.fl-stack {
+  width: 388px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.fl-intro h1 {
+  font-family:
+    "SF Pro Rounded", "Arial Rounded MT Bold", "Roboto Aula", sans-serif;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+  margin: 0 0 28px;
+  white-space: nowrap;
+}
+.fl-intro h1 > span {
+  font-weight: 400;
+}
+.fl-intro p {
+  font-family: "SF Pro Display", "Roboto Aula", sans-serif;
+  color: var(--fl-secondary);
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+.fl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+.fl-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.16px;
+  font-weight: 400;
+  margin: 0;
+  color: var(--fl-primary);
+}
+.fl-form input,
+[data-theme="dark"] .fl-form input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #d4d7e3;
+  background: #f7fbff;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.16px;
+  color: var(--fl-primary);
+}
+.fl-form input::placeholder {
+  color: #8897ad;
+}
+.fl-forgot {
+  align-self: flex-end;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--fl-link);
+  letter-spacing: 0.16px;
+}
+.fl-forgot:hover,
+.fl-account button:hover {
+  text-decoration: underline;
+}
+.fl-submit {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 12px;
+  padding: 16px;
+  background: #162d3a;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+.fl-submit:hover:not(:disabled) {
+  background: #254656;
+}
+.fl-submit:disabled {
+  opacity: 0.65;
+}
+.fl-account {
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0.18px;
+  color: var(--fl-secondary);
+  text-align: center;
+  margin: 0;
+}
+.fl-account button {
+  background: none;
+  border: 0;
+  color: var(--fl-link);
+  font: inherit;
+  padding: 0;
+}
+.fl-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  color: #959cb6;
+  font-size: 14px;
+  line-height: 1.4;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.fl-footer small {
+  font-size: 10px;
+  line-height: 1.6;
+}
+.fl-footer a {
+  color: #65718b;
+  text-decoration: underline;
+  display: inline;
+}
+.fl-art {
+  display: block;
+  border-radius: 24px;
+  min-width: 0;
+  overflow: hidden;
+}
+.fl-art img {
+  display: block;
+  object-fit: contain;
+  background: #142e3c;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100dvh - 64px);
+  border-radius: 24px;
+}
+.fl-error {
+  background: #fff1ef;
+  color: #9d3f32;
+  border: 1px solid #edcac4;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+.fl-help {
+  color: #0c1421;
+  background: white;
+  border: 1px solid #d4d7e3;
+  border-radius: 16px;
+  max-width: 460px;
+  width: calc(100% - 40px);
+  padding: 28px;
+}
+.fl-help::backdrop {
+  background: #10253270;
+}
+.fl-help-heading {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.fl-help-heading h2 {
+  color: #0c1421;
+  font-size: 22px;
+  line-height: 1.4;
+}
+.fl-help-heading button {
+  background: none;
+  border: 0;
+  padding: 2px;
+  color: #5a6679;
+}
+.fl-help p {
+  color: #313957;
+  line-height: 1.8;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.fl-help .fl-submit {
+  height: 44px;
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .figma-login {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px;
+    min-height: 100dvh;
+  }
+  .fl-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    width: 100%;
+    min-height: 0;
+  }
+  .fl-art {
+    order: -1;
+    width: 100%;
+    height: 180px;
+    flex-shrink: 0;
+    border-radius: 20px;
+  }
+  .fl-art img {
+    height: 180px;
+    min-height: 0;
+    width: 100%;
+    border-radius: 20px;
+  }
+  .fl-stack {
+    width: 100%;
+    max-width: 100%;
+    gap: 24px;
+  }
+  .fl-intro h1 {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: 0.24px;
+    margin-bottom: 16px;
+  }
+  .fl-intro p {
+    font-size: 15px;
+    letter-spacing: 0.15px;
+    line-height: 1.6;
+  }
+  .fl-form {
+    gap: 16px;
+  }
+  .fl-form label {
+    font-size: 14px;
+    letter-spacing: 0.14px;
+  }
+  .fl-form input,
+  [data-theme="dark"] .fl-form input {
+    height: 42px;
+    border-radius: 8px;
+    background: #f3f7fb;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+  }
+  .fl-forgot {
+    font-size: 14px;
+    letter-spacing: 0.14px;
+  }
+  .fl-submit {
+    height: 44px;
+    font-size: 16px;
+    padding: 14px;
+    letter-spacing: 0.16px;
+  }
+  .fl-account {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.16px;
+  }
+  .fl-footer {
+    position: static;
+    width: 100%;
+    margin-top: 56px;
+    font-size: 14px;
+  }
+  .fl-footer small {
+    font-size: 9px;
+  }
+}
+@media (max-width: 360px) {
+  .figma-login {
+    padding: 20px;
+  }
+}
